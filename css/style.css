@@ -1,0 +1,214 @@
+* {
+    /* tenha o tamanho até a borda do elemento*/
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #EEE;
+    font-family: 'Lato', Helvetica, Arial;
+    font-size: 15px;
+    display: flex;
+    margin: 0;
+    /* altura min: se auto ajustar proporcionalmente (ocupar 100% da altura)*/
+    min-height: 100vh;
+}
+
+.models {
+    /* nao é pra mostrar*/
+    display: none;
+}
+
+header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 60px;
+    background-color: #399ade;
+    /* só irá aparcerer no mobile, por isso none por hora*/
+    display: none;
+    /*posicionar pelo final do elemento*/
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.menu-openner {
+    margin-right: 15px;
+    font-size: 26px;
+    background-color: #a9dcff;
+    /*afastar 5px cima embaixo, 20px lados*/
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+.menu-openner span {
+    margin-right: 10px;
+}
+
+.menu-closer {
+    width: 32px;
+    height: 32px;
+    display: none;
+    font-size: 30px;
+}
+
+aside {
+    background-color: #9ccbe6;
+    /*não terá tamanho pra nao acupar um espaço no desktop*/
+    width: 0vw;
+    font-family: 'Hepta Slab', Helvetica, Arial;
+    /*transição de aparecer ao lado*/
+    /*tudo, ease= duração transição(lento - rapido - lento), duração 2s */
+    transition: all ease 0.2s;
+    /*se passar da medida em x, esconda*/
+    overflow-x: hidden;
+}
+
+/*classe que será aplicada quando tiver elemento dentro dele*/
+aside.show {
+    /*aperecer 30% da tela*/
+    /*"%" = em relação ao tamanho do elemento em que ele esta inserido*/
+    /*"vw" = % em relação a tela*/
+    width: 30vw;
+}
+
+.cart--area {
+    padding: 20px;
+}
+
+main {
+    /*ocupa o espaço que sobrar, 100% sem aside, com o aside que ocupa 30%, ele ocupa 70% ex:*/
+    flex: 1;
+    padding: 20px;
+}
+
+h1 {
+    font-family: 'Hepta Slab', Helvetica, Arial;
+}
+
+.models-area {
+    display: grid;
+    /*define os nomes das linhas e as funções de dimensionamento de faixas das colunas da grade*/
+    /*"fr"=fração do espaço disponível no container do grid*/
+    /*será repitido 3x a divisao de 1fr*/
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.models-item {
+    text-align: center;
+    /*largura maxima*/
+    max-width: 250px;
+    font-family: 'Hepta Slab', Helvetica, Arial;
+    margin: 0 auto 50px auto;
+}
+
+.models-item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+.models-item--img {
+    width: 200%;
+    /*altura automatica*/
+    height: 200px;
+    background-color: #eee;
+    /*elemento circular height/2*/
+    border-radius: 100px;
+    /*sombra*/
+    /*"rgba(0, 0, 0, 0.2)" vermelho, verde, azul, opacidade (0 a 1 sendo 1 solido)*/
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.2);
+}
+
+.models-item--img img {
+    width: 100%;
+    /*altura automatica*/
+    height: auto;
+}
+
+.models-itens-add {
+    width: 50px;
+    height: 50px;
+    /*altura da linha na frase*/
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: #3888c5;
+    text-align: center;
+    color: #fff;
+    font-size: 22px;
+    /*tipo de cursor do mouse*/
+    cursor: pointer;
+    margin-top: -25px;
+    transition: all ease 0.2s;
+}
+
+.models-item a:hover .models-item--add {
+    background-color: #244c88;
+}
+
+.models-itens--price {
+    font-size: 15px;
+    color: #333;
+    margin-top: 5px;
+}
+
+.models-item--none {
+    font-size: 15px;
+    color: #000;
+    /*define o peso (ou negrito) da fonte*/
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.models-item--desc {
+    font-size: 13px;
+    color: #555;
+    margin-top: 10px;
+}
+
+.modelsWindowArea {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: none;
+    transition: all ease 0.5s;
+    /*define como o navegador distribui o espaço entre e ao redor dos itens de conteúdo ao
+    longo do eixo principal de um contêiner flexível e do eixo embutido de um contêiner de grade.*/
+    justify-content: center;
+    align-items: center;
+    /*controla o que acontece com o conteúdo grande demais para caber em uma área.*/
+    overflow: auto;
+}
+
+.modelsWindowBody {
+    width: 900px;
+    background-color: #FFF;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px #999;
+    display: flex;
+    margin: 20px 0;
+}
+
+.modelsBig {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.models.Big--back {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #000;
+}
+
+.modelsBig img {
+    height: 400px;
+    /*a largura deixa de ser proporcional e passa a ser o que tiver de espaço, criando distorção imagem*/
+    width: auto;
+}

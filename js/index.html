@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <title>Site compras</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- criar responsividade site, viewport= janela de visualização-->
+    <!--A width=device-widthparte define a largura da página para seguir a largura da tela do dispositivo
+    (que varia de acordo com o dispositivo). A initial-scale=1.0 define o nível de zoom inicial quando
+    a página é carregada pela primeira vez pelo navegador.-->
+
+    <link href="https://fonts.googleapis.com/css?family=Hepta+Slab:400,700|Lato:400,700&display=swap" rel="stylesheet">
+    <!--acrescentou 2 fontes, hepta e lato-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--buscou icones-->
+
+</head>
+
+<body>
+    <div class="models">
+        <div class="models-item">
+            <a href="">
+                <div class="models-item--img">
+                    <img src="" />
+                </div>
+                <div class="models-item--add">+</div>
+            </a>
+            <div class="models-item--price">R$ --</div>
+            <div class="models-item--name">--</div>
+            <div class="models-item--desc">--</div>
+        </div>
+        <div class="cart--item">
+            <img src="" />
+            <div class="cart--item--qtarea">
+                <button class="cart--item-qtmenos">-</button>
+                <div class="cart--item-qt">1</div>
+                <button class="cart--item-qtmais">+</button>
+            </div>
+        </div>
+
+    </div>
+<header>
+    <!--menu aberto para mobile, criando carrinho-->
+    <div class="menu-openner">
+        <!-- <span> é muito parecido com o elemento <div> , entretando <div> é um elemento de nível de bloco enquanto
+        <span> é um elemento em linha.-->
+        <span>0</span>
+        <span class="material-icons">shopping_cart</span>
+    </div>
+</header>
+<main>
+    <h1>Modelos</h1>
+    <div class="modelo-area"></div>
+</main>
+<aside>
+    <!-- representa uma seção de uma página que consiste de conteúdo que é tangencialmente relacionado ao conteúdo do
+        seu entorno, que poderia ser considerado separado do conteúdo. Essas seções são, muitas vezes, representadas
+        como barras laterais.-->
+    <div class="cart--area">
+        <!--será usado para o carrinho mobile-->
+        <div class="menu-closer">
+            <span class="material-icons">close</span>
+        </div>
+        <h1>Seus modelos</h1>
+        <div class="cart"></div>
+        <div class="cart--details"></div>
+        <div class="cart--totalitem subtotal">
+            <span>Subtotal</span>
+            <span>R$ --</span>
+        </div>
+        <div class="cart--totalitem desconto">
+            <span>Desconto (-10%)</span>
+            <span>R$ --</span>
+        </div>
+        <div class="cart--finalizar">Finalizar a compra</div>
+
+    </div>
+</aside>
+<div class="modelsWindowArea">
+    <div class="modelsWindowsBody">
+        <div class="modelsInfo--cancelMobileButton">Voltar</div>
+        <div class="modelBig">
+            <img src="" />
+        </div>
+
+        <div class="modelsInfo">
+            <h1>--</h1>
+            <div class="modelsInfo--desc">--</div>
+
+            <div class="modelsInfo--sizearea">
+                <div class="modelsInfo--sector">Escala</div>
+                <div class="modelsInfo--sizes">
+                    <!-- Atributos data-* nos permite armazenar informações extras em elementos HTML padrões e semânticos,
+            neste caso será o codigo do produto-->
+                    <div data-key="0" class="modelsInfo--size">1/72<span>--</span></div>
+                    <div data-key="1" class="modelsInfo--size">1/48<span>--</span></div>
+                    <div data-key="2" class="modelsInfo--size" selected>1/32<span>--</span></div>
+                </div>
+            </div>
+
+            <div class="modelsInfo--princearea">
+                <div class="modelsInfo--sector">Preço</div>
+                <div class="modelsInfo--price">
+                    <div class="modelsInfo--actualPrice">R$ --</div>
+                    <div class="modelsInfo--qtarea">
+                        <button class="modelsInfo--qtmenos">-</button>
+                        <div class="modelsInfo--qt">1</div>
+                        <button class="modelsInfo--qtmais">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modelsInfo--addButton">Adicionar ao carrinho</div>
+            <div class="modelsInfo--cancelButton">Cancelar</div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/models.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+
+</body>
+</html>
