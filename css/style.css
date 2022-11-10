@@ -110,12 +110,12 @@ h1 {
 }
 
 .models-item--img {
-    width: 200%;
+    width: 200px;
     /*altura automatica*/
     height: 200px;
     background-color: #eee;
-    /*elemento circular height/2*/
-    border-radius: 100px;
+    /*elemento circular height/2* exemplo border-radius: 100px*/
+    border-radius: 20px;
     /*sombra*/
     /*"rgba(0, 0, 0, 0.2)" vermelho, verde, azul, opacidade (0 a 1 sendo 1 solido)*/
     box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.2);
@@ -123,11 +123,12 @@ h1 {
 
 .models-item--img img {
     width: 100%;
+    border-radius: 20px;
     /*altura automatica*/
     height: auto;
 }
 
-.models-itens-add {
+.models-item--add {
     width: 50px;
     height: 50px;
     /*altura da linha na frase*/
@@ -153,7 +154,7 @@ h1 {
     margin-top: 5px;
 }
 
-.models-item--none {
+.models-item--name {
     font-size: 15px;
     color: #000;
     /*define o peso (ou negrito) da fonte*/
@@ -214,7 +215,7 @@ h1 {
 }
 
 .modelsInfo {
-/*quando se usa o flex-direction, O flex: 1; é necessário para que cada item se expanda ocupando
+    /*quando se usa o flex-direction, O flex: 1; é necessário para que cada item se expanda ocupando
  o tamanho máximo do container. */
     flex: 1;
     font-family: 'Hepta Slab', Helvetica, Arial;
@@ -243,7 +244,7 @@ h1 {
     margin-bottom: 10px;
 }
 
-.models--sizes {
+.modelsInfo--sizes {
     display: inline-flex;
     border-radius: 10px;
     /*overflow controla o que acontece com o conteúdo grande demais para caber em uma área.*/
@@ -261,7 +262,7 @@ h1 {
     cursor: pointer;
 }
 
-.modelsInfo--size:hover{
+.modelsInfo--size:hover {
     background-color: #CCC;
 }
 
@@ -270,11 +271,11 @@ h1 {
     color: #fff;
 }
 
-.modelsInfo--size.selected span{
-    color:#d6d6d6
+.modelsInfo--size.selected span {
+    color: #d6d6d6
 }
 
-.modelsInfo--size span{
+.modelsInfo--size span {
     font-size: 12px;
     color: #999;
     font-weight: normal;
@@ -285,7 +286,7 @@ h1 {
     align-items: center;
 }
 
-.modelsInfo--actualPrice{
+.modelsInfo--actualPrice {
     font-size: 28px;
     margin-right: 30px;
 }
@@ -297,8 +298,8 @@ h1 {
     height: 30px;
 }
 
-.modelsInfo--qtarea button{
-    border:0;
+.modelsInfo--qtarea button {
+    border: 0;
     background-color: transparent;
     font-size: 17px;
     outline: 0;
@@ -315,7 +316,7 @@ h1 {
     color: #000;
 }
 
-.modelsInfo--addButton{
+.modelsInfo--addButton {
     margin-top: 30px;
     padding: 20px 30px;
     border-radius: 20px;
@@ -330,9 +331,9 @@ h1 {
     background-color: #32a345;
 }
 
-.modelsInfo--cancelButton{
+.modelsInfo--cancelButton {
     display: inline-block;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .modelsInfo--cancelMobileButton {
@@ -347,20 +348,20 @@ h1 {
     margin-bottom: 20px;
 }
 
-.cart--item{
+.cart--item {
     display: flex;
     align-items: center;
     margin: 10px 0;
 }
 
-.cart--item img{
+.cart--item img {
     width: 40px;
     height: 40px;
     margin-right: 20px;
 }
 
-.cart--item-nome{
-    flex:1;
+.cart--item-nome {
+    flex: 1;
 }
 
 .cart--item-qtarea {
@@ -370,7 +371,7 @@ h1 {
     height: 30px;
 }
 
-.cart--item-qtarea button{
+.cart--item-qtarea button {
     border: 0;
     background-color: transparent;
     font-size: 17px;
@@ -389,4 +390,150 @@ h1 {
     color: #000;
 }
 
-/*min 34:00 do video - aula 06*/
+.cart--totalitem {
+    padding: 15px;
+    border-top: 1px solid #79b9dd;
+    color: #315978;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+/*first-child:primeiro elemento dentro do span*/
+.cart--totalitem span:first-child {
+    /*negrito*/
+    font-weight: bold;
+}
+
+.cart--totalitem.big {
+    font-size: 20px;
+    color: #000;
+    font-weight: bold;
+}
+
+.cart--finalizar {
+    padding: 20px 30px;
+    border-radius: 20px;
+    background-color: #48D05f;
+    color: #FFF;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+    border: 2px solid #63f77c;
+    transition: all ease 0.2s;
+}
+
+.cart--finalizar:hover {
+    background-color: #35af4a;
+}
+
+/*------------------------RESPONSIVIDADE----------------------*/
+
+/*limite tablet*/
+@media (max-width: 1000px) {
+    .models-area {
+        /*grid columns: é o espaço entre duas linhas de grade verticais
+        grid-template-columns: define os nomes das linhas e as funções de dimensionamento de faixas das grid columns*/
+        grid-template-columns: repeat (2, 1fr);
+    }
+}
+
+/*tablet em pé ou smart*/
+@media (max-width: 840px) {
+    body {
+        flex-direction: column;
+    }
+
+    .models-area {
+        display: block;
+    }
+
+    .models-item {
+        max-width: 100%;
+    }
+
+    header {
+        display: flex;
+    }
+
+    main {
+        padding-top: 60px;
+    }
+
+    aside {
+        width: auto;
+        position: fixed;
+        left: 100vw;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        transition: all ease 0.2s;
+    }
+
+    aside.show{
+        width: auto;
+    }
+
+    .cart--area{
+        width: 100vw;
+    }
+
+    .menu-closer{
+        display: block;
+    }
+
+    .modelsWindowArea{
+        /*flex-start: os itens são empacotados em direção à linha de partida, ficam juntados a esquerda*/
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .modelsWindowBody{
+        width: 100vw;
+        display: block;
+        padding: 20px;
+        border-radius: 0;
+        /*sem sombra*/
+        box-shadow: none;
+        margin: 0;
+    }
+
+    .modelsBig img{
+        /*largura*/
+        width: 75%;
+        /*altura*/
+        height: auto;
+    }
+    
+    .modelsInfo h1{
+        margin-top: 20px;
+    }
+
+    .modelsInfo--qtarea{
+        height: 60px;
+    }
+
+    .modelsInfo--qtarea button{
+        font-size: 25px;
+        padding: 0 25px;
+    }
+
+    .modelsInfo--qt{
+        line-height: 60px;
+        font-size: 20px;
+    }
+
+    .modelsInfo--addButton{
+        font-size: 20px;
+        display: block;
+        text-align: center;
+        margin: 30px auto;
+    }
+
+    .modelsInfo--cancelButton{
+        display: none;
+    }
+    .modelsInfo--cancelMobileButton{
+        display: block;
+    }
+}
