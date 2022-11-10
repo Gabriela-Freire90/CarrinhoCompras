@@ -212,3 +212,181 @@ h1 {
     /*a largura deixa de ser proporcional e passa a ser o que tiver de espaço, criando distorção imagem*/
     width: auto;
 }
+
+.modelsInfo {
+/*quando se usa o flex-direction, O flex: 1; é necessário para que cada item se expanda ocupando
+ o tamanho máximo do container. */
+    flex: 1;
+    font-family: 'Hepta Slab', Helvetica, Arial;
+    /*padding-bottom: define a altura da área de preenchimento na parte inferior de um elemento*/
+    padding-bottom: 50px;
+}
+
+.modelsInfo h1 {
+    margin-top: 50px;
+}
+
+/*atribuindo algo apenas para o modelsInfo--desc que esta dentro do modelsInfo*/
+.modelsInfo .modelsInfo--desc {
+    font-size: 15px;
+    color: #999;
+    margin-top: 10px;
+    font-family: 'Lato', Helvetica, Arial;
+}
+
+.modelsInfo--sector {
+    color: #CCC;
+    /*texto maiúsculo, quando a pessoa for escrever fica padronizado para o back-end*/
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.models--sizes {
+    display: inline-flex;
+    border-radius: 10px;
+    /*overflow controla o que acontece com o conteúdo grande demais para caber em uma área.*/
+    /*hidden- O estouro é cortado e o restante do conteúdo ficará invisível*/
+    overflow: hidden;
+}
+
+.modelsInfo--size {
+    padding: 10px 15px;
+    color: #000;
+    background-color: #eee;
+    font-size: 13px;
+    /*negrito*/
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modelsInfo--size:hover{
+    background-color: #CCC;
+}
+
+.modelsInfo--size.selected {
+    background-color: #399ADE;
+    color: #fff;
+}
+
+.modelsInfo--size.selected span{
+    color:#d6d6d6
+}
+
+.modelsInfo--size span{
+    font-size: 12px;
+    color: #999;
+    font-weight: normal;
+}
+
+.modelsInfo--price {
+    display: flex;
+    align-items: center;
+}
+
+.modelsInfo--actualPrice{
+    font-size: 28px;
+    margin-right: 30px;
+}
+
+.modelsInfo--qtarea {
+    display: inline-flex;
+    background-color: #eee;
+    border-radius: 10px;
+    height: 30px;
+}
+
+.modelsInfo--qtarea button{
+    border:0;
+    background-color: transparent;
+    font-size: 17px;
+    outline: 0;
+    cursor: pointer;
+    padding: 0 10px;
+    color: #333;
+}
+
+.modelsInfo--qt {
+    line-height: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0 5px;
+    color: #000;
+}
+
+.modelsInfo--addButton{
+    margin-top: 30px;
+    padding: 20px 30px;
+    border-radius: 20px;
+    background-color: #48D05f;
+    color: #fff;
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+.modelsInfo--addButton:hover {
+    background-color: #32a345;
+}
+
+.modelsInfo--cancelButton{
+    display: inline-block;
+    cursor:pointer;
+}
+
+.modelsInfo--cancelMobileButton {
+    display: none;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin-bottom: 30px;
+}
+
+.cart {
+    margin-bottom: 20px;
+}
+
+.cart--item{
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.cart--item img{
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+}
+
+.cart--item-nome{
+    flex:1;
+}
+
+.cart--item-qtarea {
+    display: inline-block;
+    background-color: #eee;
+    border-radius: 10px;
+    height: 30px;
+}
+
+.cart--item-qtarea button{
+    border: 0;
+    background-color: transparent;
+    font-size: 17px;
+    /*uma linha desenhada fora da borda do elemento.*/
+    outline: 0;
+    cursor: pointer;
+    padding: 0 10px;
+    color: #333;
+}
+
+.cart--item-qt {
+    line-height: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0 5px;
+    color: #000;
+}
+
+/*min 34:00 do video - aula 06*/
