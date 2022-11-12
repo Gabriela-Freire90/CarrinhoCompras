@@ -1,5 +1,6 @@
 /*variavel carregando as estruturas de html*/
 
+let modalQt = 0;
 /*localiza o primeiro elemento da classe*/
 const c = (el) => document.querySelector(el);
 /*localiza todos os itens da classe*/
@@ -25,9 +26,9 @@ modelsJson.map((item, index) => {
     modelsItem.querySelector('.models-item--img img').src = item.img;
 
     /*buscanco as informações de preço no arquivo models.js e retornando na classe do html,
-    como ele é array tenho que informar qual eu quero ex: price[0]
+    como ele é array tenho que informar qual eu quero ex: price[2], o mais caro
     para colocar em 2 casas decimais o valor: toFixed(2)*/
-    modelsItem.querySelector('.models-item--price').innerHTML = `R$ ${item.price[0].toFixed(2)}`;
+    modelsItem.querySelector('.models-item--price').innerHTML = `R$ ${item.price[2].toFixed(2)}`;
 
     /*buscanco as informações de name e description no arquivo models.js e retornando na classe do html*/
     modelsItem.querySelector('.models-item--name').innerHTML = item.name;
@@ -38,10 +39,46 @@ modelsJson.map((item, index) => {
         /*evitar carga de trabalho*/
         e.preventDefault();
         /*pegando o elemento e dizendo pra pegar o elemento mais proximo a ele  que tenha a classe .models-item*/
-        /*vai pegar o valor que esta na data-key e colocar na variavel key*/
-        let key = e.target.closest('.models-item').getAttribute('data-key;')
-        /*vai pegar o valor que esta na data-key e colocar na variavel key*/
-        c('.modelsBig img').src = modelsJson[key.img];
+        /*vai pegar o valor que esta na data-key e colocar na variavel key
+        definindo o valor da modalQt = 1*/
+        let key = e.target.closest('.models-item').getAttribute('data-key');
+        modalQt = 1;
+        /*vai executar no html e vai por a função no clique
+        vai puxar a imagem*/
+        c('.modelsBig img').src = modelsJson[key].img;
+        /*vai executar no html e vai por a função no clique
+       vai puxar o nome dos avioes*/
+        c('.modelsInfo h1').innerHTML = modelsJson[key].name;
+        /*vai executar no html e vai por a função no clique
+        vai puxar a descrição dos avioes*/
+        c('.modelsInfo--desc').innerHTML = modelsJson[key].description;
+        /*vai executar no html e vai por a função no clique
+       vai puxar o preço dos avioes, porém como varia ele vai para as condições...
+        c('.modelsInfo--actualPrice').innerHTML = `R$ ${modelsJson[key].price[2].toFixed(2)}`;*/
+        /*remover a escala pre-selecionada pelo html*/
+        c('.modelsInfo--size.selected').classList.remove('selected');
+
+        /*pegar o conjunto de informações da classe dos tamanhos
+        cs = pegar tudo, forEach = dentro de cada um dos elemento
+        executar a função dos elementos size(elemento) e sizeIndex (ordem do elemento)*/
+        cs('.modelsInfo--size').forEach((size, sizeIndex) => {
+            /*selecionar o modelo maior pegando a posição 2 onde esta as maiores medidas*/
+            if (sizeIndex == 2) {
+                size.classList.add('selected');
+                /*vai puxar o preço do aviao que esta na posição 2*/
+                c('.modelsInfo--actualPrice').innerHTML = `R$ ${modelsJson[key].price[sizeIndex].toFixed(2)}`;
+            }
+            /*preenchendo a informação do size, com o sizes do arquivo models.js
+            com a infomação do banco (ordem do elemento)*/
+            size.innerHTML = modelsJson[key].sizes[sizeIndex];
+
+            /*a outra forma de fazer é colocar no html dentro do span os nomes PEQUENO, MÉDIO E GRANDE
+            e aqui falando pra ele puxar o span
+            size.querySelector('span').innerHTML = modelsJson[key].sizes[sizeIndex];*/
+        });
+
+        /*atribuindo o valor da variavel modalQt para a classe modelsInfo--qt*/
+        c('.modelsInfo--qt').innerHTML = modalQt;
         /*colocando uma opacidade 0, para que a aba suma no começo*/
         c('.modelsWindowArea').style.opcity = 0;
         /*acionando o modo display que estava desligado no css*/
@@ -50,15 +87,60 @@ modelsJson.map((item, index) => {
             /*colocando uma opacidade 1, para que a aba apareça, fazendo a transição no tempo de 200ms*/
             c('.modelsWindowArea').style.opcity = 1;
         }, 200);
-
-        
-
-
     })
-
     /*preenchendo no site, append=acrescentar
     document.querySelector('.models-area').append(modelsItem);
     é a mesma coisa escrita a cima atribuindo a variavel c*/
     c('.models-area').append(modelsItem);
 });
-/*aula 09 - min 41 */
+
+/*---------------------------criar ação no mode mobile---------------------------*/
+
+/*fechar janela*/
+function closeModal() {
+    c('.modelsWindowArea').style.opcity = 0;
+    setTimeout(() => {
+        /*mandando sumir o display (fechar a janela), fazendo a transição no tempo de 500ms*/
+        c('.modelsWindowArea').style.display = 'none';
+    }, 500);
+}
+
+/*pegar o conjunto de informações da classe dos botoes de cancelar
+cs = pegar tudo, forEach = dentro de cada um dos elemento, item esta no moda array
+cria um evento que quando ocorre o clique aciona a função close modal*/
+cs('.modelsInfo--cancelButton, .modelsInfo--cancelMobileButton').forEach((item) => {
+    item.addEventListener('click', closeModal);
+});
+
+/*botar mais e menos do carrinho */
+c('.modelsInfo--qtmenos').addEventListener('click', () => {
+    /*não deixar o valor ficar negativo*/
+    if (modalQt > 1) {
+        /*vai diminuindo de 1 em 1 na variavel*/
+        modalQt--;
+        /*salva o valor na classe modelsInfo--qt*/
+        c('.modelsInfo--qt').innerHTML = modalQt;
+    }
+});
+c('.modelsInfo--qtmais').addEventListener('click', () => {
+    /*vai incrementando de 1 em 1 na variavel*/
+    modalQt++;
+    /*salva o valor na classe modelsInfo--qt*/
+    c('.modelsInfo--qt').innerHTML = modalQt;
+});
+
+/*mudar o modelo selecionado*/
+/*pegar o conjunto de informações da classe dos tamanhos
+cs = pegar tudo, forEach = dentro de cada um dos elemento
+executar a função dos elementos size(elemento) e sizeIndex (ordem do elemento)*/
+cs('.modelsInfo--size').forEach((size, sizeIndex) => {
+    /*quando clico, adiciona um evento, fazendo a função e*/
+    size.addEventListener('click', (e) => {
+        /*remover a escala pre-selecionada pelo html*/
+        c('.modelsInfo--size.selected').classList.remove('selected');
+        /*seleciona a escala clicada*/
+        e.target.classList.add('selected');
+    });
+});
+
+//aula 11, min 24
