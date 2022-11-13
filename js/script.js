@@ -1,5 +1,7 @@
 /*variavel carregando as estruturas de html*/
 
+/*variavel array para o carrinho*/
+let cart =[];
 let modalQt = 0;
 /*localiza o primeiro elemento da classe*/
 const c = (el) => document.querySelector(el);
@@ -138,9 +140,21 @@ cs('.modelsInfo--size').forEach((size, sizeIndex) => {
     size.addEventListener('click', (e) => {
         /*remover a escala pre-selecionada pelo html*/
         c('.modelsInfo--size.selected').classList.remove('selected');
-        /*seleciona a escala clicada*/
-        e.target.classList.add('selected');
+        /*seleciona o elemento da escala escala clicada
+        e.target.classList.add('selected');*/
+        /*para evitar problemas, vamos selecionar o size pois assim posso colocar
+        outros dados na div e ele reconhecer o click, tipo o spam*/
+        size.target.classList.add('selected');
     });
 });
 
-//aula 11, min 24
+/*-----BOTAO CARRINHO DE COMPRAS */
+
+c('.modelsInfo--addButton').addEventListener('click', ()=>{
+    //Qual modelo escolhido?
+    //Qual tamanho que escolheu?
+    //Quantidade?
+});
+
+
+//aula 11 - min 30
