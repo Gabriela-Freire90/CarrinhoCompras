@@ -1,5 +1,6 @@
 /*variavel carregando as estruturas de html*/
 
+
 /*variavel array para o carrinho*/
 let cart = [];
 let modalQt = 0;
@@ -214,7 +215,6 @@ function updateCart() {
                     break;
                 case 2:
                     modelSizeName = 'G';
-                    break;
             }
 
             //inserindo imagem
