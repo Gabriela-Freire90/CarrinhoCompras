@@ -1,8 +1,9 @@
 /*variavel carregando as estruturas de html*/
 
 /*variavel array para o carrinho*/
-let cart =[];
+let cart = [];
 let modalQt = 0;
+let key = 0;
 /*localiza o primeiro elemento da classe*/
 const c = (el) => document.querySelector(el);
 /*localiza todos os itens da classe*/
@@ -43,7 +44,7 @@ modelsJson.map((item, index) => {
         /*pegando o elemento e dizendo pra pegar o elemento mais proximo a ele  que tenha a classe .models-item*/
         /*vai pegar o valor que esta na data-key e colocar na variavel key
         definindo o valor da modalQt = 1*/
-        let key = e.target.closest('.models-item').getAttribute('data-key');
+        key = e.target.closest('.models-item').getAttribute('data-key');
         modalQt = 1;
         /*vai executar no html e vai por a função no clique
         vai puxar a imagem*/
@@ -144,17 +145,90 @@ cs('.modelsInfo--size').forEach((size, sizeIndex) => {
         e.target.classList.add('selected');*/
         /*para evitar problemas, vamos selecionar o size pois assim posso colocar
         outros dados na div e ele reconhecer o click, tipo o spam*/
-        size.target.classList.add('selected');
+        size.classList.add('selected');
+        /*vai puxar o preço do aviao que esta na posição key selecionada*/
+        c('.modelsInfo--actualPrice').innerHTML = `R$ ${modelsJson[key].price[sizeIndex].toFixed(2)}`;
     });
 });
 
 /*-----BOTAO CARRINHO DE COMPRAS */
 
-c('.modelsInfo--addButton').addEventListener('click', ()=>{
+c('.modelsInfo--addButton').addEventListener('click', () => {
     //Qual modelo escolhido?
     //Qual tamanho que escolheu?
     //Quantidade?
+    //parseInt para converter a string c em numero
+    let size = parseInt(c('.modelsInfo--size.selected').getAttribute('data-Key'));
+    //fazer com que os itens se juntem no carrinho, diminuindo os arrays criados
+    //primeiro vamos identificar os itens, o '@' é um separador
+    let identificador = modelsJson[key].id + '@' + size;
+    //segundo vamos localizar os itens e verificar pra cada item do array se o item.identificador == identificador
+    let localId = cart.findIndex((item) => item.identificador == identificador);
+    //se ele localizar
+    if (localId > -1) {
+        //mudar a quantidade
+        //vai na posição do array e soma a quantidade acrescentada nela
+        cart[localId].qt += modalQt;
+    } else {
+        //montar carrinho
+        //pegando na forma de array o objeto
+        cart.push({
+            identificador,
+            //recebe o id e o tamanho
+            id: modelsJson[key].id,
+            size,
+            //recebe a quantidade
+            qt: modalQt
+        });
+    }
+    //atualizando o carrinho
+    updateCart();
+    //fechando o carrinho
+    closeModal();
 });
 
+//----------------mostrar carrinho na lateral--------------
 
-//aula 11 - min 30
+function updateCart() {
+    //quando tiver 1 item no carrinho
+    if (cart.length > 0) {
+        //buscando a tag aside e mandando mostrar
+        c('aside').classList.add('show');
+        //limpando os modelos adquiridos
+        c('cart').innerHTML = '';
+        cart.map((itemCart, index) => {
+            //vai ver se o que puxamos do Json tem no carrinho
+            //vai buscar o itemBD (item do banco de dados) e comparar com o itemCart
+            let modelItem = modelsJson.find((itemBD) => itemBD.id == itemCart.id);
+            //adicionar os elementos no carrinho
+            let cartItem = c('.models .cart--item').cloneNode(true);
+
+            //diferenciando os tamanhos dos itens escolhidos
+            let modelSizeName;
+            switch (itemCart.size) {
+                case 0:
+                    modelSizeName = 'P';
+                    break;
+                case 1:
+                    modelSizeName = 'M';
+                    break;
+                case 2:
+                    modelSizeName = 'G';
+                    break;
+            }
+
+            //inserindo imagem
+            cartItem.querySelector('img').src = modelItem.img;
+            //inserindo os dois nomes e diferenciando o tamanho
+            cartItem.querySelector('.cart--item-nome').innerHTML = `${modelItem.name} (${modelSizeName})`;
+
+            c('.cart').append(cartItem);
+        });
+    } else {
+        c('aside').classList.remove('show');
+    }
+
+};
+
+
+//aula 13 - video 21:31
